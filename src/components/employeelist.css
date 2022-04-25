@@ -1,0 +1,14 @@
+.list_container{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin: 15px ;
+}
+
+.employee_card{
+    display: flex;
+    flex-direction: column;
+    max-width: 200px;
+    
+}
