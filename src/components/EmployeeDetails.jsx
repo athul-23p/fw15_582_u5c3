@@ -25,6 +25,23 @@ export const EmployeeDetails = () => {
     handleStats({...stats,"total_terminated":stats.total_terminated+1});
     setEmpData(updatedEmpData);
   }
+
+  const handlePromotion = () => {
+    let new_title;
+    if(emp.title === "intern"){
+       new_title = "Jr Software Developer"
+    }
+    else if(emp.title ==="Jr Software Developer"){
+      new_title = "Sr Software Developer";
+    }
+    else if(emp.title === "Sr Software Developer"){
+      new_title = "Team Lead";
+    }
+
+     const updatedEmpData = { ...emp, title: new_title };
+     handleStats({ ...stats, total_promoted: stats.total_promoted + 1 });
+     setEmpData(updatedEmpData);
+  }
   return (
     <div
       className="user_details"
@@ -43,7 +60,7 @@ export const EmployeeDetails = () => {
       {/* Show this button only if user is not already terminated (users status is working) */}
       {  emp.status === "working" ? <button className="fire" onClick={handleTermination}>Fire Employee</button>:""}
       {/* Show this button only if user is not already team lead or terminated */}
-      { (emp.status === "working" && emp.title !== "Team Lead" )? <button className="promote">promote</button>:"" }
+      { (emp.status === "working" && emp.title !== "Team Lead" )? <button className="promote" onClick={handlePromotion}>promote</button>:"" }
       
     </div>
   );
